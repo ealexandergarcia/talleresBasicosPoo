@@ -27,11 +27,11 @@ class Estudiante extends Persona {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const formulario = document.getElementById("formulario");
     const btnSaludar = document.getElementById("btn-saludar");
 
-    btnSaludar.addEventListener("click", function() {
+    btnSaludar.addEventListener("click", function () {
         const nombre = document.getElementById("nombre").value;
         const edad = parseInt(document.getElementById("edad").value);
         const sexo = document.getElementById("sexo").value;
@@ -42,6 +42,40 @@ document.addEventListener("DOMContentLoaded", function() {
         estudiante1.estudiar();
 
         const esMayor = Persona.esMayorDeEdad(edad);
-        console.log(`Es mayor de edad: ${esMayor ? "si":"no"} `);
+        console.log(`Es mayor de edad: ${esMayor ? "si" : "no"} `);
     });
 });
+let sidebarSelect = async (e, id) => {
+    e.preventDefault();
+    let sidebarLinks = document.querySelectorAll(".sidebar a")
+    sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+    })
+    let selectedLink = document.getElementById(id)
+    selectedLink.classList.add('active');
+}
+
+let animal = document.querySelector("#animal")
+animal.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "animal")
+})
+
+let persona = document.querySelector("#persona")
+persona.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "persona")
+})
+
+let figura = document.querySelector("#figura")
+figura.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "figura")
+})
+
+let vehiculo = document.querySelector("#vehiculo")
+vehiculo.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "vehiculo")
+})
+
+let empleado = document.querySelector("#empleado")
+empleado.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "empleado")
+})
