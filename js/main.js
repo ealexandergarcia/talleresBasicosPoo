@@ -1,6 +1,7 @@
-import { Estudiante, Persona } from "./classes/classes.js";
+import { Animal, Estudiante, Perro, Persona } from "./classes/classes.js";
 import { load } from "./components/common/load.js";
-import { formPersona } from "./components/persona/persona.js";
+import { formAnimal } from "./components/forms/animal.js";
+import { formPersona } from "./components/forms/persona.js";
 
 let formulario = document.querySelector("#formulario");
 
@@ -18,6 +19,19 @@ let animal = document.querySelector("#animal")
 animal.addEventListener("click", async (e) => {
     await sidebarSelect(e, "animal")
     await load();
+    formulario.innerHTML = await formAnimal();
+    const btnSaludar = document.getElementById("btn-saludar");
+
+    btnSaludar.addEventListener("click", function () {
+        const nombre = document.getElementById("nombre").value;
+        const edad = parseInt(document.getElementById("edad").value);
+        const raza = document.getElementById("raza").value;
+
+        const animal1 = new Perro(nombre, edad, raza);
+        animal1.moverCola();
+        animal1.hacerSonido();
+
+    });
 })
 
 let persona = document.querySelector("#persona")
