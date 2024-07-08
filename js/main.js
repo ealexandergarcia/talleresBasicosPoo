@@ -1,4 +1,5 @@
-import { Animal, Estudiante, Perro, Persona } from "./classes/classes.js";
+import { Estudiante, Persona } from "./classes/persona.js";
+import { Animal, Perro } from "./classes/animal.js";
 import { load } from "./components/common/load.js";
 import { formAnimal } from "./components/forms/animal.js";
 import { formPersona } from "./components/forms/persona.js";
@@ -58,16 +59,19 @@ persona.addEventListener("click", async (e) => {
 
 let figura = document.querySelector("#figura")
 figura.addEventListener("click", async (e) => {
+    await load();
     await sidebarSelect(e, "figura")
 })
 
 let vehiculo = document.querySelector("#vehiculo")
 vehiculo.addEventListener("click", async (e) => {
+    await load();
     await sidebarSelect(e, "vehiculo")
 })
 
 let empleado = document.querySelector("#empleado")
 empleado.addEventListener("click", async (e) => {
+    await load();
     await sidebarSelect(e, "empleado")
 })
 
