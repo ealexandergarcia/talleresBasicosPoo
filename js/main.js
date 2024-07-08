@@ -1,34 +1,30 @@
-class Persona {
-    constructor(nombre, edad, sexo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.sexo = sexo;
-    }
+import { Estudiante, Persona } from "./classes/classes.js";
+import { load } from "./components/common/load.js";
+import { formPersona } from "./components/persona/persona.js";
 
-    saludar() {
-        console.log(`Hola, soy ${this.nombre} y tengo ${this.edad} años.`);
-        document.getElementById("saludo").innerHTML = `Hola, soy ${this.nombre} y tengo ${this.edad} años.`;
-    }
+let formulario = document.querySelector("#formulario");
 
-    static esMayorDeEdad(edad) {
-        return edad >= 18;
-    }
+let sidebarSelect = async (e, id) => {
+    e.preventDefault();
+    let sidebarLinks = document.querySelectorAll(".sidebar a")
+    sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+    })
+    let selectedLink = document.getElementById(id)
+    selectedLink.classList.add('active');
 }
 
-class Estudiante extends Persona {
-    constructor(nombre, edad, sexo, carrera) {
-        super(nombre, edad, sexo);
-        this.carrera = carrera;
-    }
+let animal = document.querySelector("#animal")
+animal.addEventListener("click", async (e) => {
+    await sidebarSelect(e, "animal")
+    await load();
+})
 
-    estudiar() {
-        console.log(`Estoy estudiando ${this.carrera}.`);
-        document.getElementById("estudios").innerHTML = `Estoy estudiando ${this.carrera}.`;
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const formulario = document.getElementById("formulario");
+let persona = document.querySelector("#persona")
+persona.addEventListener("click", async (e) => {
+    await load();
+    await sidebarSelect(e, "persona")
+    formulario.innerHTML = await formPersona();
     const btnSaludar = document.getElementById("btn-saludar");
 
     btnSaludar.addEventListener("click", function () {
@@ -44,25 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const esMayor = Persona.esMayorDeEdad(edad);
         console.log(`Es mayor de edad: ${esMayor ? "si" : "no"} `);
     });
-});
-let sidebarSelect = async (e, id) => {
-    e.preventDefault();
-    let sidebarLinks = document.querySelectorAll(".sidebar a")
-    sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-    })
-    let selectedLink = document.getElementById(id)
-    selectedLink.classList.add('active');
-}
-
-let animal = document.querySelector("#animal")
-animal.addEventListener("click", async (e) => {
-    await sidebarSelect(e, "animal")
-})
-
-let persona = document.querySelector("#persona")
-persona.addEventListener("click", async (e) => {
-    await sidebarSelect(e, "persona")
 })
 
 let figura = document.querySelector("#figura")
@@ -79,3 +56,5 @@ let empleado = document.querySelector("#empleado")
 empleado.addEventListener("click", async (e) => {
     await sidebarSelect(e, "empleado")
 })
+
+persona.click()
