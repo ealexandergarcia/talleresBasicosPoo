@@ -9,6 +9,10 @@ class Persona {
         console.log(`Hola, soy ${this.nombre} y tengo ${this.edad} años.`);
         document.getElementById("saludo").innerHTML = `Hola, soy ${this.nombre} y tengo ${this.edad} años.`;
     }
+
+    static esMayorDeEdad(edad) {
+        return edad >= 18;
+    }
 }
 
 class Estudiante extends Persona {
@@ -29,12 +33,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     btnSaludar.addEventListener("click", function() {
         const nombre = document.getElementById("nombre").value;
-        const edad = document.getElementById("edad").value;
+        const edad = parseInt(document.getElementById("edad").value);
         const sexo = document.getElementById("sexo").value;
         const carrera = document.getElementById("carrera").value;
 
         const estudiante1 = new Estudiante(nombre, edad, sexo, carrera);
         estudiante1.saludar();
         estudiante1.estudiar();
+
+        const esMayor = Persona.esMayorDeEdad(edad);
+        console.log(`Es mayor de edad: ${esMayor ? "si":"no"} `);
     });
 });
