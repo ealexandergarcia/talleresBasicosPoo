@@ -11,16 +11,30 @@ class Persona {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+class Estudiante extends Persona {
+    constructor(nombre, edad, sexo, carrera) {
+        super(nombre, edad, sexo);
+        this.carrera = carrera;
+    }
+
+    estudiar() {
+        console.log(`Estoy estudiando ${this.carrera}.`);
+        document.getElementById("estudios").innerHTML = `Estoy estudiando ${this.carrera}.`;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
     const formulario = document.getElementById("formulario");
     const btnSaludar = document.getElementById("btn-saludar");
 
-    btnSaludar.addEventListener("click", function () {
+    btnSaludar.addEventListener("click", function() {
         const nombre = document.getElementById("nombre").value;
         const edad = document.getElementById("edad").value;
         const sexo = document.getElementById("sexo").value;
+        const carrera = document.getElementById("carrera").value;
 
-        const persona1 = new Persona(nombre, edad, sexo);
-        persona1.saludar();
+        const estudiante1 = new Estudiante(nombre, edad, sexo, carrera);
+        estudiante1.saludar();
+        estudiante1.estudiar();
     });
 });
