@@ -14,7 +14,7 @@ export const formFigura = async () => {
 }
 
 export const generarCamposDinamicos = (tipo) => {
-    const camposDinamicos = document.getElementById("campos-dinamicos");
+    const camposDinamicos = document.querySelector("#campos-dinamicos");
     camposDinamicos.innerHTML = "";
   
     if (tipo === "circulo") {

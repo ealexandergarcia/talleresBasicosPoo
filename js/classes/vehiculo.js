@@ -23,6 +23,6 @@ export class Coche extends Vehiculo {
     acelerar() {
         this.velocidad += 20;
         const velocidadMph = Vehiculo.convertirKmHEnMph(this.velocidad);
-        document.getElementById("resultado-coche").innerHTML = `El auto marca ${this.marca} ${this.modelo} tiene una cantidad de combustible de  ${this.combustible} y acelero a ${velocidadMph} Mph o ${this.velocidad} Kmh.`;
+        document.querySelector("#resultado-coche").innerHTML = `El auto marca ${this.marca} ${this.modelo} tiene una cantidad de combustible de  ${this.combustible} y acelero a ${velocidadMph} Mph o ${this.velocidad} Kmh.`;
     }
 }

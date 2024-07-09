@@ -6,7 +6,7 @@ export class Animal {
 
     hacerSonido() {
         console.log(`El animal ${this.nombre} hace un sonido`);
-        document.getElementById("saludo").innerHTML = `El animal ${this.nombre} hace un sonido`;
+        document.querySelector("#saludo").innerHTML = `El animal ${this.nombre} hace un sonido`;
     }
 }
 
@@ -18,7 +18,7 @@ export class Perro extends Animal {
 
     moverCola(){
         console.log(`El perro ${this.nombre} está moviendo la cola`);
-        document.getElementById("estudios").innerHTML = `El perro ${this.nombre} está moviendo la cola`;
+        document.querySelector("#estudios").innerHTML = `El perro ${this.nombre} está moviendo la cola`;
 
     }
 }

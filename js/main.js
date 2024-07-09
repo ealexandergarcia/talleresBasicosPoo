@@ -18,21 +18,21 @@ let sidebarSelect = async (e, id) => {
   sidebarLinks.forEach(link => {
     link.classList.remove('active');
   })
-  let selectedLink = document.getElementById(id)
+  let selectedLink = document.querySelector(id)
   selectedLink.classList.add('active');
 }
 
 let animal = document.querySelector("#animal")
 animal.addEventListener("click", async (e) => {
-  await sidebarSelect(e, "animal")
+  await sidebarSelect(e, "#animal")
   await load();
   formulario.innerHTML = await formAnimal();
-  const btnSaludar = document.getElementById("btn-saludar");
+  const btnSaludar = document.querySelector("#btn-saludar");
 
   btnSaludar.addEventListener("click", function () {
-    const nombre = document.getElementById("nombre").value;
-    const edad = parseInt(document.getElementById("edad").value);
-    const raza = document.getElementById("raza").value;
+    const nombre = document.querySelector("#nombre").value;
+    const edad = parseInt(document.querySelector("#edad").value);
+    const raza = document.querySelector("#raza").value;
 
     const animal1 = new Perro(nombre, edad, raza);
     animal1.moverCola();
@@ -42,17 +42,19 @@ animal.addEventListener("click", async (e) => {
 })
 
 let persona = document.querySelector("#persona")
+console.log(persona);
+
 persona.addEventListener("click", async (e) => {
   await load();
-  await sidebarSelect(e, "persona")
+  await sidebarSelect(e, "#persona")
   formulario.innerHTML = await formPersona();
-  const btnSaludar = document.getElementById("btn-saludar");
+  const btnSaludar = document.querySelector("#btn-saludar");
 
   btnSaludar.addEventListener("click", function () {
-    const nombre = document.getElementById("nombre").value;
-    const edad = parseInt(document.getElementById("edad").value);
-    const sexo = document.getElementById("sexo").value;
-    const carrera = document.getElementById("carrera").value;
+    const nombre = document.querySelector("#nombre").value;
+    const edad = parseInt(document.querySelector("#edad").value);
+    const sexo = document.querySelector("#sexo").value;
+    const carrera = document.querySelector("#carrera").value;
 
     const estudiante1 = new Estudiante(nombre, edad, sexo, carrera);
     estudiante1.saludar();
@@ -66,9 +68,9 @@ persona.addEventListener("click", async (e) => {
 let figura = document.querySelector("#figura")
 figura.addEventListener("click", async (e) => {
   await load();
-  await sidebarSelect(e, "figura")
+  await sidebarSelect(e, "#figura")
   formulario.innerHTML = await formFigura();
-  const tipoSelect = document.getElementById("tipo");
+  const tipoSelect = document.querySelector("#tipo");
 
   tipoSelect.addEventListener("change", function () {
     generarCamposDinamicos(tipoSelect.value);
@@ -77,40 +79,40 @@ figura.addEventListener("click", async (e) => {
   tipoSelect.value = "circulo";
   generarCamposDinamicos(tipoSelect.value);
 
-  const btnCalcular = document.getElementById("btn-calcular");
+  const btnCalcular = document.querySelector("#btn-calcular");
 
   btnCalcular.addEventListener("click", function () {
-    const color = document.getElementById("color").value;
-    const tipo = document.getElementById("tipo").value;
+    const color = document.querySelector("#color").value;
+    const tipo = document.querySelector("#tipo").value;
     let figura;
 
     if (tipo === "circulo") {
-      const radio = parseInt(document.getElementById("radio").value);
+      const radio = parseInt(document.querySelector("#radio").value);
       figura = new Circulo(color, radio);
     } else if (tipo === "rectangulo") {
-      const largo = parseInt(document.getElementById("largo").value);
-      const ancho = parseInt(document.getElementById("ancho").value);
+      const largo = parseInt(document.querySelector("#largo").value);
+      const ancho = parseInt(document.querySelector("#ancho").value);
       figura = new Rectangulo(color, largo, ancho);
     }
 
     if (figura) {
       const area = figura.calcularArea();
-      document.getElementById("resultado").innerHTML = `El área de la figura es: ${area}`;
+      document.querySelector("#resultado").innerHTML = `El área de la figura es: ${area}`;
     } else {
-      document.getElementById("resultado").innerHTML = "Error: No se ha seleccionado una figura válida";
+      document.querySelector("#resultado").innerHTML = "Error: No se ha seleccionado una figura válida";
     }
   });
 });
 let vehiculo = document.querySelector("#vehiculo")
 vehiculo.addEventListener("click", async (e) => {
   await load();
-  await sidebarSelect(e, "vehiculo")
+  await sidebarSelect(e, "#vehiculo")
   formulario.innerHTML = await formVehiculo();
-  document.getElementById("btn-coche").addEventListener("click", function () {
-    const marca = document.getElementById("marca-coche").value;
-    const modelo = document.getElementById("modelo-coche").value;
-    const velocidad = parseInt(document.getElementById("velocidad-coche").value);
-    const combustible = document.getElementById("combustible-coche").value;
+  document.querySelector("#btn-coche").addEventListener("click", function () {
+    const marca = document.querySelector("#marca-coche").value;
+    const modelo = document.querySelector("#modelo-coche").value;
+    const velocidad = parseInt(document.querySelector("#velocidad-coche").value);
+    const combustible = document.querySelector("#combustible-coche").value;
     const coche = new Coche(marca, modelo, velocidad, combustible);
     coche.acelerar();
 
@@ -121,13 +123,13 @@ vehiculo.addEventListener("click", async (e) => {
 let empleado = document.querySelector("#empleado")
 empleado.addEventListener("click", async (e) => {
   await load();
-  await sidebarSelect(e, "empleado")
+  await sidebarSelect(e, "#empleado")
   formulario.innerHTML = await formEmpleado();
-  document.getElementById("btn-calcular").addEventListener("click", function () {
-    const nombre = document.getElementById("nombre").value;
-    const edad = parseInt(document.getElementById("edad").value);
-    const sueldo = parseInt(document.getElementById("sueldo").value);
-    const departamento = document.getElementById("departamento").value;
+  document.querySelector("#btn-calcular").addEventListener("click", function () {
+    const nombre = document.querySelector("#nombre").value;
+    const edad = parseInt(document.querySelector("#edad").value);
+    const sueldo = parseInt(document.querySelector("#sueldo").value);
+    const departamento = document.querySelector("#departamento").value;
     console.log(nombre,edad,sueldo,departamento);
     
     if (departamento.toLowerCase() == "gerente" ) {
