@@ -3,6 +3,8 @@ import { Animal, Perro } from "./classes/animal.js";
 import { load } from "./components/common/load.js";
 import { formAnimal } from "./components/forms/animal.js";
 import { formPersona } from "./components/forms/persona.js";
+import { Figura, Circulo, Rectangulo } from "./classes/figura.js";
+import { formFigura, generarCamposDinamicos } from "./components/forms/formFigura.js";
 
 let formulario = document.querySelector("#formulario");
 
@@ -60,9 +62,41 @@ persona.addEventListener("click", async (e) => {
 let figura = document.querySelector("#figura")
 figura.addEventListener("click", async (e) => {
     await load();
-    await sidebarSelect(e, "figura")
-})
+    await sidebarSelect(e, "figura")    
+    formulario.innerHTML = await formFigura();
+    const tipoSelect = document.getElementById("tipo");
 
+    tipoSelect.addEventListener("change", function() {
+      generarCamposDinamicos(tipoSelect.value);
+    });
+
+    tipoSelect.value = "circulo";
+    generarCamposDinamicos(tipoSelect.value);
+
+    const btnCalcular = document.getElementById("btn-calcular");
+
+    btnCalcular.addEventListener("click", function () {
+        const color = document.getElementById("color").value;
+        const tipo = document.getElementById("tipo").value;
+        let figura;
+      
+        if (tipo === "circulo") {
+          const radio = parseInt(document.getElementById("radio").value);
+          figura = new Circulo(color, radio);
+        } else if (tipo === "rectangulo") {
+          const largo = parseInt(document.getElementById("largo").value);
+          const ancho = parseInt(document.getElementById("ancho").value);
+          figura = new Rectangulo(color, largo, ancho);
+        }
+      
+        if (figura) {
+          const area = figura.calcularArea();
+          document.getElementById("resultado").innerHTML = `El área de la figura es: ${area}`;
+        } else {
+          document.getElementById("resultado").innerHTML = "Error: No se ha seleccionado una figura válida";
+        }
+      });
+});
 let vehiculo = document.querySelector("#vehiculo")
 vehiculo.addEventListener("click", async (e) => {
     await load();
