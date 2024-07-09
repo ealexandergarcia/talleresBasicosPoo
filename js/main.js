@@ -7,6 +7,8 @@ import { Figura, Circulo, Rectangulo } from "./classes/figura.js";
 import { formFigura, generarCamposDinamicos } from "./components/forms/formFigura.js";
 import { formVehiculo } from "./components/forms/formVehiculo.js";
 import { Coche } from "./classes/vehiculo.js";
+import { Empleado, Gerente } from "./classes/empleado.js";
+import { formEmpleado } from "./components/forms/formEmpleado.js";
 
 let formulario = document.querySelector("#formulario");
 
@@ -120,6 +122,22 @@ let empleado = document.querySelector("#empleado")
 empleado.addEventListener("click", async (e) => {
   await load();
   await sidebarSelect(e, "empleado")
+  formulario.innerHTML = await formEmpleado();
+  document.getElementById("btn-calcular").addEventListener("click", function () {
+    const nombre = document.getElementById("nombre").value;
+    const edad = parseInt(document.getElementById("edad").value);
+    const sueldo = parseInt(document.getElementById("sueldo").value);
+    const departamento = document.getElementById("departamento").value;
+    console.log(nombre,edad,sueldo,departamento);
+    
+    if (departamento.toLowerCase() == "gerente" ) {
+      const gerente1 = new Gerente(nombre, edad, sueldo, departamento)
+      gerente1.calcularSalarioAnual();
+    } else {
+      const empleado1 = new Empleado(nombre, edad, sueldo)
+      empleado1.calcularSalarioAnual();
+    }
+  })
 })
 
 persona.click()
