@@ -30,7 +30,7 @@ select {
   height: 30px;
 }
 
-#btn-saludar {
+#btn-saludar, #btn-calcular, #btn-coche {
   background-color: #04AA6D;
   color: #fff;
   padding: 10px 20px;
